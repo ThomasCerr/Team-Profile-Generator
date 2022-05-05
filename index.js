@@ -2,57 +2,11 @@ const fs = require('fs');
 const util = require('util');
 const inquirer = require('inquirer');
 
-
-const generateTeam= require('./utils/generateTeam');
+const generateHTML= require('./utils/generateHTML');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-
-//Start
-
-inquirer
-  .prompt([
-{
-    type: 'input',
-    name: 'name',
-    message: 'What is the name of the Team Manager?'
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: 'What is the Team Managers ID?'
-  },
-  {
-    type: 'input',
-    name: 'email',
-    message: 'What is the Team Managers Email?'
-  },
-  {
-    type: 'input',
-    name: 'officeNumber',
-    message: 'What is the Team Managers Office Number?'
-  },
-  {
-    type: 'checkbox',
-    name: 'nextMember',
-    message: 'Select your next member of the team or finish your team:',
-    choices: ['Add an Engineer', 'Add an Intern', "Finish my Team"]
-},
-])
-        .then((answers) => {
-            let manager = new Manager(answers)
-            if (answers.nextMember = "Add an Engineer"){
-                addEngineer()
-            }
-            if (answers.nextMember = "Add an Intern"){
-                addIntern()
-            }
-            if (answers.nextMember = "Finish my Team"){
-                generateTeam()
-        }
-})
-
-
+let teamArray = [];
 const addEngineer = () => 
 inquirer
   .prompt([
@@ -83,18 +37,19 @@ inquirer
     type: 'checkbox',
     name: 'nextMember',
     message: 'Select your next member of the team or finish your team:',
-    choices: ('Add an Engineer', 'Add an Intern', "Finish my Team")
+    choices: ['Add an Engineer', 'Add an Intern', "Finish my Team"]
 },
 ])
         .then((answers) => {
-            let engineer = new Engineer(answers)
-            if (answers.nextMember = "Add an Engineer"){
+            let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+            teamArray.push(engineer)
+            if (answers.nextMember == "Add an Engineer"){
                 addEngineer()
             }
-            if (answers.nextMember = "Add an Intern"){
+            else if (answers.nextMember == "Add an Intern"){
                 addIntern()
             }
-            if (answers.nextMember = "Finish my Team"){
+            else {
                 generateTeam()
         }
 })
@@ -129,23 +84,67 @@ inquirer
     type: 'checkbox',
     name: 'nextMember',
     message: 'Select your next member of the team or finish your team:',
-    choices: ('Add an Engineer', 'Add an Intern', "Finish my Team")
+    choices: ['Add an Engineer', 'Add an Intern', "Finish my Team"]
 },
 ])
         .then((answers) => {
-            let intern = new Intern(answers)
-            if (answers.nextMember = "Add an Engineer"){
+            let intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+            teamArray.push(intern)
+            if (answers.nextMember == "Add an Engineer"){
                 addEnginer()
             }
-            if (answers.nextMember = "Add an Intern"){
+            else if (answers.nextMember == "Add an Intern"){
                 addIntern()
             }
-            if (answers.nextMember = "Finish my Team"){
+            else {
                 generateTeam()
         }
 })
 
+//start manager
 
+inquirer
+  .prompt([
+{
+    type: 'input',
+    name: 'name',
+    message: 'What is the name of the Team Manager?'
+  },
+  {
+    type: 'input',
+    name: 'id',
+    message: 'What is the Team Managers ID?'
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'What is the Team Managers Email?'
+  },
+  {
+    type: 'input',
+    name: 'officeNumber',
+    message: 'What is the Team Managers Office Number?'
+  },
+  {
+    type: 'checkbox',
+    name: 'nextMember',
+    message: 'Select your next member of the team or finish your team:',
+    choices: ['Add an Engineer', 'Add an Intern', "Finish my Team"]
+},
+])
+        .then((answers) => {
+            let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+            teamArray.push(manager)
+            if (answers.nextMember == "Add an Engineer"){
+                addEngineer()
+            }
+            else if (answers.nextMember == "Add an Intern"){
+                addIntern()
+            }
+            else {
+                generateTeam()
+        }
+})
 generateTeam = () => {
-    fs.writeFileSync('./src/generateTeam.html', generateMarkdown(answers))
+    fs.writeFileSync('./src/teamHTML.html', generateHTML(teamArray))
 }
