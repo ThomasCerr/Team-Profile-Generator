@@ -27,7 +27,7 @@ function generateHTML(teamArray) {
                 <h6 class="card-title">${person.getRole()}</h6>
                </div>
              <p class="card-text rounded-pill bg-light p-2">ID: ${person.id}</p>
-             <p class="card-text rounded-pill bg-light p-2">Email: ${person.email}</p>
+             <p class="card-text rounded-pill bg-light p-2">Email: <a href = "mailto:${person.email}">${person.email} </a></p>
              <p class="card-text rounded-pill bg-light p-2">Office Number: ${person.officeNumber}</p>
            </div>
          </div>
@@ -40,8 +40,8 @@ function generateHTML(teamArray) {
                 <h6 class="card-title">${person.getRole()}</h6>
                </div>
              <p class="card-text rounded-pill bg-light p-2">ID: ${person.id}</p>
-             <p class="card-text rounded-pill bg-light p-2">Email: ${person.email}</p>
-             <p class="card-text rounded-pill bg-light p-2">Github: ${person.github}</p>
+             <p class="card-text rounded-pill bg-light p-2">Email: <a href = "mailto:${person.email}">${person.email} </a></p>
+             <p class="card-text rounded-pill bg-light p-2">Github:<a href = "https://github.com/${person.github}">${person.github}</a> </p>
            </div>
          </div>
          ` }
@@ -53,7 +53,7 @@ function generateHTML(teamArray) {
                 <h6 class="card-title">${person.getRole()}</h6>
                </div>
              <p class="card-text rounded-pill bg-light p-2">ID: ${person.id}</p>
-             <p class="card-text rounded-pill bg-light p-2">Email: ${person.email}</p>
+             <p class="card-text rounded-pill bg-light p-2">Email: <a href = "mailto:${person.email}">${person.email} </a></p>
              <p class="card-text rounded-pill bg-light p-2">School: ${person.school}</p>
            </div>
          </div>
