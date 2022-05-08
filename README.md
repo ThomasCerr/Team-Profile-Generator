@@ -39,4 +39,8 @@ THEN I exit the application, and the HTML is generated
 ```
 ## Mockup
 
-<img src= "https://github.com/ThomasCerr/Team-Profile-Generator/blob/main/mockup/Untitled_%20May%208%2C%202022%204_18%20PM.mp4">
+
+
+https://user-images.githubusercontent.com/99366289/167316002-5f9d79ca-a240-4d02-84fd-f2636108fa18.mp4
+
+
