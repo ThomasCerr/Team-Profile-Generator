@@ -41,7 +41,7 @@ function generateHTML(teamArray) {
                </div>
              <p class="card-text rounded-pill bg-light p-2">ID: ${person.id}</p>
              <p class="card-text rounded-pill bg-light p-2">Email: <a href = "mailto:${person.email}">${person.email} </a></p>
-             <p class="card-text rounded-pill bg-light p-2">Github:<a href = "https://github.com/${person.github}">${person.github}</a> </p>
+             <p class="card-text rounded-pill bg-light p-2">Github:<a href = "https://github.com/${person.github}" target="_blank">${person.github}</a> </p>
            </div>
          </div>
          ` }
